@@ -223,3 +223,8 @@ idade >= 18 || possuiIngressoEspecial == true
 !possuiIngresso
 ```
 
+
+
+``dia 04``
+Aprofundei um pouco mais no uso dos if, else if, else
+ultilizei tbm o o switch e o cases para elabora uma calculadora,com multiplas escolhas.
