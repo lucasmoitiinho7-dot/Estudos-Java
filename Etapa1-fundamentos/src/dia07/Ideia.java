@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Ideia {
 
     public static int soma(int[] numero){
-        int soma = 0;
+        int soma = 0;                                                   //criado o metodo soma para gerir as somas do codigo, i for percorre toda a array
         for(int i= 0; i < numero.length;i++){
             soma += numero[i];
         }
@@ -11,23 +11,77 @@ public class Ideia {
                 
 
     }
+    public static int maior(int[] numero){
+        int maior = numero[0];
+        for(int i = 1;i<numero.length;i++){
+            if(numero[i]>maior){
+                maior=numero[i];
+            }    
+        }
+        return maior;
+    
+    }
+    public static int menor(int[] numero){
+        int menor= numero[0];
+        for(int i=1;i<numero.length;i++){
+            if(numero [i]<menor){
+                menor= numero[i];
+            }
+        }
+        return menor;
+    }
+    public static double media(int[]numero){
+        int total = soma (numero);
+        double media = total/ (double)numero.length;
+        return media;
+    }
+    public static boolean localizar(int[] numero, int busca){
+        boolean encontrado = false;
+
+        for(int i=0;i<numero.length;i++){
+            if( numero[i]== busca){            
+            encontrado = true;
+            break;
+            }
+        }         
+        return encontrado;
+    }
+
+    public static int pares(int[]numero){
+        int pares = 0;
+        for(int i = 0; i < numero.length; i++){
+            if(numero[i]%2==0){
+                pares++;
+            }
+        }
+        return pares;
+    }
+    public static int impares(int[]numero){
+        int impares = 0;
+        for(int i = 0;i<numero.length;i++){
+            if(numero[i]%2 !=0){
+                impares++;
+            }
+        }
+        return impares;
+    }
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);                                     // usado para informar comos os dados entraram no sistema
         int quant = 0;
 
         do{
-        System.out.println("Quanto numeros deseja armazenar: ");
+        System.out.println("Quanto numeros deseja armazenar: ");                       // do while, protege a inclusão de numeros menores que 0, falta a proteção contra letras, porem ainda nao sei fazer
         quant = entrada.nextInt();
         }while(quant<=0);
 
         int[] numero = new int[quant];
-        for(int i = 0; i< numero.length;i++){
+        for(int i = 0; i< numero.length;i++){                                              // the array containing the previous informations has been cretaed.
             System.out.println("Informe um numero: ");
             numero[i]=entrada.nextInt();
         }
 
         int i = 0;
-        for(i=0;i< numero.length;i++){
+        for(i=0;i< numero.length;i++){                                                  // the command iterates through all the number and prints them
             System.out.println("Numero: "+numero[i]);
             
         }
@@ -48,25 +102,13 @@ public class Ideia {
         switch (opcao) {
         
             case 1:{
-                int maior = numero[0];
-                for(i = 1;i<numero.length;i++){
-                    if(numero[i]>maior){
-                        maior=numero[i];
-                                               
-                    }
-                }
-                System.out.println("O maior numero é: "+maior);
+                int resultado = maior(numero);
+                System.out.println("O maior numero é: "+resultado);
                 break;
             }
             case 2:{
-                int menor = numero[0];
-                for(i=1;i<numero.length;i++){
-                    if(numero[i]<menor){
-                        menor = numero[i];
-                        
-                    }
-                }
-                System.out.println("O menor numero é:" +menor);
+               int resultado = menor(numero);
+                System.out.println("O menor numero é:" +resultado);
                 break;
             }
             case 3:{
@@ -75,47 +117,31 @@ public class Ideia {
                 break;
             }
             case 4:{
-                int total = soma(numero);
-                double media = total / (double) numero.length;
-                System.out.println("Média: " + media);
+                double resultado = media(numero);
+                System.out.println("Média: " + resultado);
                 break;
             }
-            case 5:
-                
+            case 5:{                               
                 System.out.println("Qual numero deseja procurar: ");
-                int busca = entrada.nextInt();
-
-                boolean encontrado = false;
-
-                for(i=0;i<numero.length;i++){
-                    if(numero[i]==busca){
+                int busca = entrada.nextInt();  
+                
+                boolean encontrado = localizar(numero, busca);
+                if(encontrado){
                     System.out.println("Encontrado na posição: " + i);
-                    encontrado = true;
-                    }                    
-                }
-                if(!encontrado){
-                    System.out.println("Numero não encontrado!");
-                }
+                }else{
+                    System.out.println("Numero não encontrado");
+                }                                                                                                  
                 break;
+            }
                 
             case 6:{
-                int pares = 0;
-                for(i = 0; i < numero.length; i++){
-                if(numero[i]%2==0){
-                    pares++;
-                }
-                }
-                System.out.println("Quantidade de pares: "+pares);
+                int quantidade = pares(numero);                               
+                System.out.println("Quantidade de pares: "+quantidade);
                 break;
             }
             case 7:{
-                int impares=0;
-                for( i = 0;i<numero.length;i++){
-                if(numero[i]%2 !=0){
-                    impares ++;                    
-                }            
-                }
-                System.out.println("Quantidade de impares:"+impares);
+                int quantidade = impares(numero);
+                System.out.println("Quantidade de impares:"+quantidade);
                 break;
             }
             case 0:
